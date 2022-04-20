@@ -1,13 +1,15 @@
 package com.example.mobiletask2iteration1;
 
 import java.io.Serializable;
+import java.lang.reflect.Type;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
 public class MeterReadingJob implements Serializable {
     private Integer ID;
-    private Integer typeOfMeter; // 0 - Gas, 1 - Electric, 3 - Solar
+    private Integer typeOfMeter; // 0 - Gas, 1 - Electric, 2 - Solar
     private Date DeadlineDate;
     private String JobAddress;
     private String MeterLocation;
@@ -28,35 +30,18 @@ public class MeterReadingJob implements Serializable {
         this.NameOfCustomer = nameOfCustomer;
     }
 
+    // Getters
     public String getID() {
         return ID.toString();
     }
 
-    public String getDeadlineDate() {
-        SimpleDateFormat ft = new SimpleDateFormat ("E dd/MM/yyyy");
-        return ft.format(DeadlineDate);
-    }
-
-    public String getTypeOfMeter() {
-        String OutputSting ="";
-        switch (typeOfMeter){
-            case 0:
-                OutputSting = "Gas";
-            case 1:
-                OutputSting = "Electric";
-            case 2:
-                OutputSting = "Solar";
-        }
-        return OutputSting;
-    }
+    public Integer getTypeOfMeter() { return typeOfMeter; }
 
     public String getJobAddress() {
         return JobAddress;
     }
 
-    public String getMeterLocation() {
-        return MeterLocation;
-    }
+    public String getMeterLocation() { return MeterLocation;}
 
     public String getUtilityCompany() {
         return UtilityCompany;
@@ -70,6 +55,16 @@ public class MeterReadingJob implements Serializable {
         return JobStatus;
     }
 
+    public String getMeterReadingResult() {
+        return MeterReadingResult;
+    }
+
+    public String getDeadlineDate() {
+        SimpleDateFormat ft = new SimpleDateFormat ("dd/MM/yyyy");
+        return ft.format(DeadlineDate);
+    }
+
+    // Setters
     public void setJobStatus(Boolean inputJobStatus) {
         JobStatus = inputJobStatus;
     }
@@ -78,24 +73,31 @@ public class MeterReadingJob implements Serializable {
         ID = id;
     }
 
-    public String getMeterReadingResult() {
-        return MeterReadingResult;
-    }
+    public void setMeterType(Integer type) { typeOfMeter = type;  }
+
+    public void setAddress(String Address) { JobAddress = Address;}
+
+    public void setUtilComp(String UtilComp) { UtilityCompany = UtilComp;}
+
+    public void setMeterLocation(String MeterLoc) { MeterLocation = MeterLoc;}
 
     public void setMeterReadingResult(String meterReadingResult) {
-        MeterReadingResult = meterReadingResult;
+        MeterReadingResult = meterReadingResult;}
+
+    public void setDeadlineDate(String Date) {
+        try {
+            DeadlineDate = new SimpleDateFormat("dd/MM/yyyy").parse(Date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
+    // Is equal to itself
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MeterReadingJob that = (MeterReadingJob) o;
         return Objects.equals(ID, that.ID) && Objects.equals(typeOfMeter, that.typeOfMeter) && Objects.equals(DeadlineDate, that.DeadlineDate) && Objects.equals(JobAddress, that.JobAddress) && Objects.equals(MeterLocation, that.MeterLocation) && Objects.equals(UtilityCompany, that.UtilityCompany) && Objects.equals(JobStatus, that.JobStatus) && Objects.equals(NameOfCustomer, that.NameOfCustomer) && Objects.equals(MeterReadingResult, that.MeterReadingResult);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(ID, typeOfMeter, DeadlineDate, JobAddress, MeterLocation, UtilityCompany, JobStatus, NameOfCustomer, MeterReadingResult);
     }
 }

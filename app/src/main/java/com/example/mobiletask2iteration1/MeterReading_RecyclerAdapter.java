@@ -65,6 +65,7 @@ public class MeterReading_RecyclerAdapter extends RecyclerView.Adapter<MeterRead
         //Remove Job when cross is pressed
         holder.ImgViewRemoveIcn.setOnClickListener(view ->{
             removeJob(Selected_MeterReadingJob);
+            MeterReadingJob_List.SaveData(context);
         });
 
         //Pass through the MeterReadingJob pressed on to the View Job Activity
