@@ -4,24 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mobiletask2iteration1.MeterReadingJob;
 import com.example.mobiletask2iteration1.MeterReadingJob_List;
-import com.example.mobiletask2iteration1.MeterReading_RecyclerAdapter;
 import com.example.mobiletask2iteration1.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
-
-import java.util.Date;
-import java.util.Random;
-import java.util.concurrent.atomic.DoubleAdder;
 
 public class ViewJob extends AppCompatActivity {
 
@@ -98,7 +91,7 @@ public class ViewJob extends AppCompatActivity {
 
     private void DisplayData() {
         ID.setText(Job.getID());
-        DeadlineDate.setText(Job.getDeadlineDate());
+        DeadlineDate.setText(Job.getDeadlineDateString());
         MeterType.setSelection(Job.getTypeOfMeter());
         Address.setText(Job.getJobAddress());
         MeterLocation.setText(Job.getMeterLocation());

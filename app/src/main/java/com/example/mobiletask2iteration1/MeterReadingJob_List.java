@@ -2,16 +2,14 @@ package com.example.mobiletask2iteration1;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class MeterReadingJob_List {
     private static ArrayList<MeterReadingJob> DisplayList = new ArrayList<>();
@@ -35,6 +33,7 @@ public class MeterReadingJob_List {
         }
     }
 
+    // Save And Load The Display List
     public static void SaveData(Context ct) {
         Context context = ct;
         SharedPreferences sharedPreferences = ct.getSharedPreferences("shared preferences", ct.MODE_PRIVATE);
@@ -54,6 +53,30 @@ public class MeterReadingJob_List {
         DisplayList = gson.fromJson(json, type);
     }
 
+    // Different ways to sort the Display list
+    public static void SortByDate(){
+        Collections.sort(DisplayList, new Comparator<MeterReadingJob>() {
+            @Override
+            public int compare(MeterReadingJob a, MeterReadingJob b) {
+                // Returning the value after comparing the objects
+                // this will sort the data in Descending order
+                return b.getDeadlineDateRaw().compareTo(a.getDeadlineDateRaw());
+            }
+        });
+    }
+
+    public static void SortByJobCompleted() {
+        Collections.sort(DisplayList, new Comparator<MeterReadingJob>() {
+            @Override
+            public int compare(MeterReadingJob JobStat1, MeterReadingJob JobStat2) {
+                // Returning the value after comparing the objects
+                // this will sort the data in Descending order
+                return Boolean.compare(JobStat1.getJobStatus(),JobStat2.getJobStatus());
+            }
+        });
+    }
+
+    // Output all items in the Display list into a string
     @Override
     public String toString() {
         String output = null;

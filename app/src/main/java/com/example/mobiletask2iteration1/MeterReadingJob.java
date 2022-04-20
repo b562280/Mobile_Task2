@@ -1,9 +1,10 @@
 package com.example.mobiletask2iteration1;
 
 import java.io.Serializable;
-import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Objects;
 
@@ -59,7 +60,9 @@ public class MeterReadingJob implements Serializable {
         return MeterReadingResult;
     }
 
-    public String getDeadlineDate() {
+    public Date getDeadlineDateRaw() { return DeadlineDate; }
+
+    public String getDeadlineDateString() {
         SimpleDateFormat ft = new SimpleDateFormat ("dd/MM/yyyy");
         return ft.format(DeadlineDate);
     }

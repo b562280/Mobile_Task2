@@ -2,6 +2,7 @@ package com.example.mobiletask2iteration1;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,8 +60,10 @@ public class MeterReading_RecyclerAdapter extends RecyclerView.Adapter<MeterRead
     public void onBindViewHolder(@NonNull MeterReading_RecyclerAdapter.MyViewHolder holder, int position) {
         MeterReadingJob Selected_MeterReadingJob = JobDataList.get(position);
 
+        CheckIfSelectedJobIsComplete(holder, Selected_MeterReadingJob);
+
         //Display Data in a row
-        holder.JobID.setText(Selected_MeterReadingJob.getID());
+        holder.JobID.setText("Job ID: " + Selected_MeterReadingJob.getID());
 
         //Remove Job when cross is pressed
         holder.ImgViewRemoveIcn.setOnClickListener(view ->{
@@ -76,6 +79,18 @@ public class MeterReading_RecyclerAdapter extends RecyclerView.Adapter<MeterRead
             context.startActivity(intent);
         });
     }
+
+    private void CheckIfSelectedJobIsComplete(MyViewHolder holder, MeterReadingJob Job) {
+        if (Job.getJobStatus() == false){
+            holder.mainLayout.setBackgroundColor(Color.RED);
+            holder.JobID.setTextColor(Color.WHITE);
+        }
+        else {
+            holder.mainLayout.setBackgroundColor(Color.GREEN);
+            holder.JobID.setTextColor(Color.BLACK);
+        }
+    }
+
 
     private void removeJob(MeterReadingJob Job) {
         JobDataList.remove(Job);
