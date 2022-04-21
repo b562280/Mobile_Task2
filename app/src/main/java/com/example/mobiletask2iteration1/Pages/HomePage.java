@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.mobiletask2iteration1.MeterReadingJob;
@@ -20,7 +21,7 @@ import java.util.Random;
 public class HomePage extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private FloatingActionButton AddJobFAB, syncListFAB;
+    private FloatingActionButton AddJobFAB, syncListFAB, searchFAB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +34,22 @@ public class HomePage extends AppCompatActivity {
         setAdapter();
 
         AddJobFAB_Pressed();
+
+        SearchFAB_Pressed();
+    }
+
+    private void SearchFAB_Pressed() {
+        searchFAB.setOnClickListener(view -> {
+            Intent intent = new Intent(this, SearchFilters.class);
+            this.startActivity(intent);
+        });
     }
 
     private void UI_Elements() {
         recyclerView = findViewById(R.id.recyclerView);
         AddJobFAB = findViewById(R.id.addJob);
         syncListFAB = findViewById(R.id.syncList);
+        searchFAB = findViewById(R.id.SearchFAB);
     }
 
     private void AddJobFAB_Pressed() {

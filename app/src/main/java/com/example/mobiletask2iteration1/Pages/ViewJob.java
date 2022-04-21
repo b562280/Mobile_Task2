@@ -3,7 +3,9 @@ package com.example.mobiletask2iteration1.Pages;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -23,7 +25,7 @@ public class ViewJob extends AppCompatActivity {
     private Spinner MeterType;
     public MeterReadingJob Job, OldJob;
     private CheckBox JobStat;
-    private FloatingActionButton saveFAB;
+    private FloatingActionButton saveFAB, emailFAB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,10 @@ public class ViewJob extends AppCompatActivity {
         SaveFAB_Pressed();
 
         DisplayData();
+
+        emailFAB.setOnClickListener(view -> {
+            sendEmail();
+        });
     }
 
     private void SaveFAB_Pressed() {
@@ -44,6 +50,7 @@ public class ViewJob extends AppCompatActivity {
             //Update List and Start homepage
             MeterReadingJob_List.ReplaceJob(Job, OldJob);
             MeterReadingJob_List.SaveData(this);
+
             Intent intent = new Intent(this, HomePage.class);
             this.startActivity(intent);
         });
@@ -75,6 +82,7 @@ public class ViewJob extends AppCompatActivity {
         JobStat = findViewById(R.id.checkBox_JobStat);
         CustName = findViewById(R.id.viewJob_CustName);
         saveFAB = findViewById(R.id.floatingActionButton_Save);
+        emailFAB = findViewById(R.id.floatingActionButton_email);
 
         MeterReadResult = findViewById(R.id.viewJob_InputMeter);
     }
@@ -99,5 +107,18 @@ public class ViewJob extends AppCompatActivity {
         JobStat.setChecked(Job.getJobStatus());
         CustName.setText(Job.getNameOfCustomer());
         MeterReadResult.setText(Job.getMeterReadingResult());
+    }
+
+    protected void sendEmail() {
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, Job.toString());
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            finish();
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(this,
+                    "There is no email client installed.", Toast.LENGTH_SHORT).show();
+        }
     }
 }

@@ -26,7 +26,7 @@ public class MeterReading_RecyclerAdapter extends RecyclerView.Adapter<MeterRead
 
     // Collects the display items on list_items.xml
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        private TextView JobID;
+        private TextView JobID, DeadlineDate, JobType;
         private ConstraintLayout mainLayout;
         private ImageButton ImgViewRemoveIcn;
         private ImageButton ImgViewMoreIcn;
@@ -37,6 +37,8 @@ public class MeterReading_RecyclerAdapter extends RecyclerView.Adapter<MeterRead
             mainLayout = view.findViewById(R.id.mainLayout);
             ImgViewRemoveIcn = view.findViewById(R.id.imageButton_Remove);
             ImgViewMoreIcn = view.findViewById(R.id.imageButton_Edit);
+            DeadlineDate = view.findViewById(R.id.DeadlineDate);
+            JobType = view.findViewById(R.id.JobType);
         }
     }
 
@@ -64,6 +66,8 @@ public class MeterReading_RecyclerAdapter extends RecyclerView.Adapter<MeterRead
 
         //Display Data in a row
         holder.JobID.setText("Job ID: " + Selected_MeterReadingJob.getID());
+        holder.DeadlineDate.setText("Deadline Date: " + Selected_MeterReadingJob.getDeadlineDateString());
+        holder.JobType.setText("Job Type: " + Selected_MeterReadingJob.getMeterTypeString());
 
         //Remove Job when cross is pressed
         holder.ImgViewRemoveIcn.setOnClickListener(view ->{
@@ -82,13 +86,21 @@ public class MeterReading_RecyclerAdapter extends RecyclerView.Adapter<MeterRead
 
     private void CheckIfSelectedJobIsComplete(MyViewHolder holder, MeterReadingJob Job) {
         if (Job.getJobStatus() == false){
-            holder.mainLayout.setBackgroundColor(Color.RED);
-            holder.JobID.setTextColor(Color.WHITE);
+            holder.mainLayout.setBackgroundColor(context.getResources().getColor(R.color.Light_RED));
+            int textColor = Color.WHITE;
+            setTextColour(holder, textColor);
         }
         else {
-            holder.mainLayout.setBackgroundColor(Color.GREEN);
-            holder.JobID.setTextColor(Color.BLACK);
+            holder.mainLayout.setBackgroundColor(context.getResources().getColor(R.color.Light_Green));
+            int textColor = Color.BLACK;
+            setTextColour(holder, textColor);
         }
+    }
+
+    private void setTextColour(MyViewHolder holder, int textColor) {
+        holder.JobID.setTextColor(textColor);
+        holder.JobType.setTextColor(textColor);
+        holder.DeadlineDate.setTextColor(textColor);
     }
 
 

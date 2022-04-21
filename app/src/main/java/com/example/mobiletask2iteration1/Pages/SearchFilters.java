@@ -2,6 +2,7 @@ package com.example.mobiletask2iteration1.Pages;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -27,17 +28,24 @@ public class SearchFilters extends AppCompatActivity {
     private void DeadlineDateFilter_Pressed() {
         DeadlineDateSearch.setOnClickListener(view -> {
             MeterReadingJob_List.SortByDate();
+            returnToHomepage();
         });
     }
 
     private void JobStatFilter_Pressed() {
         JobStatSearch.setOnClickListener(view -> {
             MeterReadingJob_List.SortByJobCompleted();
+            returnToHomepage();
         });
     }
 
+    private void returnToHomepage() {
+        Intent intent = new Intent(this, HomePage.class);
+        this.startActivity(intent);
+    }
+
     private void getUI_Elements() {
-        JobStatSearch.findViewById(R.id.button_SearchJobStat);
-        DeadlineDateSearch.findViewById(R.id.button_SearchDeadlineDate);
+        JobStatSearch = findViewById(R.id.button_SearchJobStat);
+        DeadlineDateSearch = findViewById(R.id.button_SearchDeadlineDate);
     }
 }

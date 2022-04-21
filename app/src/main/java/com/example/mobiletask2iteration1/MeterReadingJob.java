@@ -1,5 +1,8 @@
 package com.example.mobiletask2iteration1;
 
+import android.bluetooth.le.ScanSettings;
+import android.widget.Switch;
+
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -67,6 +70,22 @@ public class MeterReadingJob implements Serializable {
         return ft.format(DeadlineDate);
     }
 
+    public String getMeterTypeString() {
+        String output = "";
+        switch (typeOfMeter) {
+            case(0):
+                output = "Gas";
+                break;
+            case(1):
+                output = "Electric";
+                break;
+            case(2):
+                output = "Solar";
+                break;
+        }
+        return output;
+    }
+
     // Setters
     public void setJobStatus(Boolean inputJobStatus) {
         JobStatus = inputJobStatus;
@@ -102,5 +121,17 @@ public class MeterReadingJob implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         MeterReadingJob that = (MeterReadingJob) o;
         return Objects.equals(ID, that.ID) && Objects.equals(typeOfMeter, that.typeOfMeter) && Objects.equals(DeadlineDate, that.DeadlineDate) && Objects.equals(JobAddress, that.JobAddress) && Objects.equals(MeterLocation, that.MeterLocation) && Objects.equals(UtilityCompany, that.UtilityCompany) && Objects.equals(JobStatus, that.JobStatus) && Objects.equals(NameOfCustomer, that.NameOfCustomer) && Objects.equals(MeterReadingResult, that.MeterReadingResult);
+    }
+
+    @Override
+    public String toString() {
+        return  "ID : " + ID + "\n" +
+                "Meter Type : " + getMeterTypeString() + "\n" +
+                "Deadline Date : " + getDeadlineDateString() + "\n" +
+                "Address of Job : " + JobAddress + "\n" +
+                "Location of Meter : " + MeterLocation + "\n" +
+                "Utility Company : " + UtilityCompany + "\n" +
+                "Customer Name : " + NameOfCustomer + "\n" +
+                "Result of Meter Reading : " + MeterReadingResult + "\n";
     }
 }
