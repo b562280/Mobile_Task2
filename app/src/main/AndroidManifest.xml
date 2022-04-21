@@ -10,9 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MobileTask2Iteration1">
         <activity
-            android:name=".Pages.ViewJob"
-            android:parentActivityName=".Pages.HomePage"
+            android:name=".Pages.SearchFilters"
             android:exported="false" />
+        <activity
+            android:name=".Pages.ViewJob"
+            android:exported="false"
+            android:parentActivityName=".Pages.HomePage" />
         <activity
             android:name=".Pages.HomePage"
             android:exported="true">
