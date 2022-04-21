@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.example.mobiletask2iteration1.MeterReadingJob_List;
 import com.example.mobiletask2iteration1.R;
 
 public class SearchFilters extends AppCompatActivity {
@@ -18,6 +19,21 @@ public class SearchFilters extends AppCompatActivity {
 
         getUI_Elements();
 
+        JobStatFilter_Pressed();
+
+        DeadlineDateFilter_Pressed();
+    }
+
+    private void DeadlineDateFilter_Pressed() {
+        DeadlineDateSearch.setOnClickListener(view -> {
+            MeterReadingJob_List.SortByDate();
+        });
+    }
+
+    private void JobStatFilter_Pressed() {
+        JobStatSearch.setOnClickListener(view -> {
+            MeterReadingJob_List.SortByJobCompleted();
+        });
     }
 
     private void getUI_Elements() {
