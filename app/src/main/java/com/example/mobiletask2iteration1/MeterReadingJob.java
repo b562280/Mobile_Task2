@@ -103,6 +103,8 @@ public class MeterReadingJob implements Serializable {
 
     public void setMeterLocation(String MeterLoc) { MeterLocation = MeterLoc;}
 
+    public void setCustomerName(String toString) { NameOfCustomer = toString;}
+
     public void setMeterReadingResult(String meterReadingResult) {
         MeterReadingResult = meterReadingResult;}
 
@@ -113,8 +115,8 @@ public class MeterReadingJob implements Serializable {
             e.printStackTrace();
         }
     }
-
     // Is equal to itself
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

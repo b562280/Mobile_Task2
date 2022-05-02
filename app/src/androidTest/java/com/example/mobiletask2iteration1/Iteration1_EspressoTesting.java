@@ -61,11 +61,4 @@ public class Iteration1_EspressoTesting {
         onView(withId(R.id.ViewJobLayout)).check(matches(isDisplayed()));
 
     }
-
-    @Test
-    public void useAppContext() {
-        // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.example.mobiletask2iteration1", appContext.getPackageName());
-    }
 }

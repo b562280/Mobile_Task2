@@ -65,6 +65,7 @@ public class ViewJob extends AppCompatActivity {
         Job.setMeterLocation(MeterLocation.getText().toString());
         Job.setJobStatus(JobStat.isChecked());
         Job.setMeterReadingResult(MeterReadResult.getText().toString());
+        Job.setCustomerName(CustName.getText().toString());
     }
 
     private void getUI_Elements() {
