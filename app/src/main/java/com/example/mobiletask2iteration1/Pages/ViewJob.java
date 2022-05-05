@@ -3,9 +3,7 @@ package com.example.mobiletask2iteration1.Pages;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -57,8 +55,7 @@ public class ViewJob extends AppCompatActivity {
     }
 
     private void getDataFromUI(){
-        Job.setID(Integer.parseInt(ID.getText().toString()));
-        Job.setDeadlineDate(DeadlineDate.getText().toString());
+        Job.setDeadlineDate_String(DeadlineDate.getText().toString());
         Job.setMeterType(MeterType.getSelectedItemPosition());
         Job.setAddress(Address.getText().toString());
         Job.setUtilComp(UtilComp.getText().toString());
@@ -100,7 +97,7 @@ public class ViewJob extends AppCompatActivity {
 
     private void DisplayData() {
         ID.setText(Job.getID());
-        DeadlineDate.setText(Job.getDeadlineDateString());
+        DeadlineDate.setText(Job.getDeadlineDate_toString());
         MeterType.setSelection(Job.getTypeOfMeter());
         Address.setText(Job.getJobAddress());
         MeterLocation.setText(Job.getMeterLocation());

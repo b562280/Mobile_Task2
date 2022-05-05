@@ -18,10 +18,20 @@ public class MeterReadingJob_List {
         return DisplayList;
     }
 
+    /**
+     * This will add MeterReadingJob to the DisplayList
+     * @param Job MeterReadingJob to add to the DisplayList
+     */
     public static void AddToList(MeterReadingJob Job) {
         DisplayList.add(Job);
     }
 
+
+    /**
+     * This will take a new MeterReadingJob will the replace the old MeterReadingJob
+     * @param newJob MeterReadingJob that will replace the old MeterReadingJob
+     * @param oldJob The old MeterReadingJob the will be replaced
+     */
     public static void ReplaceJob(MeterReadingJob newJob, MeterReadingJob oldJob) {
         Integer indexItem = DisplayList.indexOf(oldJob);
         for (MeterReadingJob job : DisplayList) {
@@ -33,6 +43,10 @@ public class MeterReadingJob_List {
         }
     }
 
+    /**
+     * This will save the data stored in DisplayList into a Json file
+     * @param ct Context
+     */
     // Save And Load The Display List
     public static void SaveData(Context ct) {
         Context context = ct;
@@ -44,6 +58,10 @@ public class MeterReadingJob_List {
         editor.apply();
     }
 
+    /**
+     * This will load the data stored in DisplayList from a Json file
+     * @param ct Context
+     */
     public static void LoadData(Context ct){
         SharedPreferences sharedPreferences = ct.getSharedPreferences("shared preferences", ct.MODE_PRIVATE);
         Gson gson = new Gson();
@@ -53,6 +71,9 @@ public class MeterReadingJob_List {
         DisplayList = gson.fromJson(json, type);
     }
 
+    /**
+     * This will sort DisplayList by date in descending
+     */
     // Different ways to sort the Display list
     public static void SortByDate(){
         Collections.sort(DisplayList, new Comparator<MeterReadingJob>() {
@@ -60,11 +81,14 @@ public class MeterReadingJob_List {
             public int compare(MeterReadingJob a, MeterReadingJob b) {
                 // Returning the value after comparing the objects
                 // this will sort the data in Descending order
-                return b.getDeadlineDateRaw().compareTo(a.getDeadlineDateRaw());
+                return b.getDeadlineDate().compareTo(a.getDeadlineDate());
             }
         });
     }
 
+    /**
+     * This will sort the DisplayList in by Job Status in descending order
+     */
     public static void SortByJobCompleted() {
         Collections.sort(DisplayList, new Comparator<MeterReadingJob>() {
             @Override
@@ -76,7 +100,9 @@ public class MeterReadingJob_List {
         });
     }
 
-    // Output all items in the Display list into a string
+    /**
+     * Output all items in the Display list into a string
+     */
     @Override
     public String toString() {
         String output = null;

@@ -1,13 +1,8 @@
 package com.example.mobiletask2iteration1;
 
-import android.bluetooth.le.ScanSettings;
-import android.widget.Switch;
-
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 import java.util.Objects;
 
@@ -63,14 +58,21 @@ public class MeterReadingJob implements Serializable {
         return MeterReadingResult;
     }
 
-    public Date getDeadlineDateRaw() { return DeadlineDate; }
+    public Date getDeadlineDate() { return DeadlineDate; }
 
-    public String getDeadlineDateString() {
+    public String getDeadlineDate_toString() {
         SimpleDateFormat ft = new SimpleDateFormat ("dd/MM/yyyy");
         return ft.format(DeadlineDate);
     }
 
-    public String getMeterTypeString() {
+    /**
+     * This will return the typeOfMeter as a string
+     * 0 - Gas,
+     * 1 - Electric,
+     * 2 - Solar,
+     * @return String
+     */
+    public String getMeterType_String() {
         String output = "";
         switch (typeOfMeter) {
             case(0):
@@ -91,10 +93,6 @@ public class MeterReadingJob implements Serializable {
         JobStatus = inputJobStatus;
     }
 
-    public void  setID (Integer id) {
-        ID = id;
-    }
-
     public void setMeterType(Integer type) { typeOfMeter = type;  }
 
     public void setAddress(String Address) { JobAddress = Address;}
@@ -108,15 +106,14 @@ public class MeterReadingJob implements Serializable {
     public void setMeterReadingResult(String meterReadingResult) {
         MeterReadingResult = meterReadingResult;}
 
-    public void setDeadlineDate(String Date) {
+    public void setDeadlineDate_String(String Date){
         try {
             DeadlineDate = new SimpleDateFormat("dd/MM/yyyy").parse(Date);
         } catch (ParseException e) {
             e.printStackTrace();
         }
     }
-    // Is equal to itself
-
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -128,8 +125,8 @@ public class MeterReadingJob implements Serializable {
     @Override
     public String toString() {
         return  "ID : " + ID + "\n" +
-                "Meter Type : " + getMeterTypeString() + "\n" +
-                "Deadline Date : " + getDeadlineDateString() + "\n" +
+                "Meter Type : " + getMeterType_String() + "\n" +
+                "Deadline Date : " + getDeadlineDate_toString() + "\n" +
                 "Address of Job : " + JobAddress + "\n" +
                 "Location of Meter : " + MeterLocation + "\n" +
                 "Utility Company : " + UtilityCompany + "\n" +

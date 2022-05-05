@@ -2,8 +2,6 @@ package com.example.mobiletask2iteration1;
 
 import static org.junit.Assert.assertEquals;
 
-import com.example.mobiletask2iteration1.Pages.HomePage;
-
 import org.junit.Test;
 
 import java.util.Date;
@@ -20,8 +18,8 @@ public class UnitTest_Iteration2 {
     public void Test_MeterReadingJob_DeadlineDate() {
         MeterReadingJob JOB = addJob();
 
-        JOB.setDeadlineDate("20/02/2019");
-        assertEquals("20/02/2019",JOB.getDeadlineDateString());
+        JOB.setDeadlineDate_String("20/02/2019");
+        assertEquals("20/02/2019",JOB.getDeadlineDate_toString());
     }
 
     @Test
@@ -69,13 +67,13 @@ public class UnitTest_Iteration2 {
         MeterReadingJob JOB = addJob();
 
         JOB.setMeterType(0);
-        assertEquals("Gas",JOB.getMeterTypeString());
+        assertEquals("Gas",JOB.getMeterType_String());
 
         JOB.setMeterType(1);
-        assertEquals("Electric",JOB.getMeterTypeString());
+        assertEquals("Electric",JOB.getMeterType_String());
 
         JOB.setMeterType(2);
-        assertEquals("Solar",JOB.getMeterTypeString());
+        assertEquals("Solar",JOB.getMeterType_String());
     }
 
     @Test

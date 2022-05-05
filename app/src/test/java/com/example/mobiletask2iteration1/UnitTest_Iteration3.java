@@ -47,13 +47,13 @@ public class UnitTest_Iteration3 {
         MeterReadingJob_List.SortByDate();
 
         assertEquals("02/04/2022",
-                MeterReadingJob_List.GetDisplayList().get(0).getDeadlineDateString());
+                MeterReadingJob_List.GetDisplayList().get(0).getDeadlineDate_toString());
         assertEquals("02/04/2021",
-                MeterReadingJob_List.GetDisplayList().get(1).getDeadlineDateString());
+                MeterReadingJob_List.GetDisplayList().get(1).getDeadlineDate_toString());
         assertEquals("02/04/2020",
-                MeterReadingJob_List.GetDisplayList().get(2).getDeadlineDateString());
+                MeterReadingJob_List.GetDisplayList().get(2).getDeadlineDate_toString());
         assertEquals("02/04/2019",
-                MeterReadingJob_List.GetDisplayList().get(3).getDeadlineDateString());
+                MeterReadingJob_List.GetDisplayList().get(3).getDeadlineDate_toString());
         MeterReadingJob_List.GetDisplayList().clear();
     }
 

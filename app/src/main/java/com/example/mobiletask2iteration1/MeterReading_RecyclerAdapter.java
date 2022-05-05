@@ -66,8 +66,8 @@ public class MeterReading_RecyclerAdapter extends RecyclerView.Adapter<MeterRead
 
         //Display Data in a row
         holder.JobID.setText("Job ID: " + Selected_MeterReadingJob.getID());
-        holder.DeadlineDate.setText("Deadline Date: " + Selected_MeterReadingJob.getDeadlineDateString());
-        holder.JobType.setText("Job Type: " + Selected_MeterReadingJob.getMeterTypeString());
+        holder.DeadlineDate.setText("Deadline Date: " + Selected_MeterReadingJob.getDeadlineDate_toString());
+        holder.JobType.setText("Job Type: " + Selected_MeterReadingJob.getMeterType_String());
 
         //Remove Job when cross is pressed
         holder.ImgViewRemoveIcn.setOnClickListener(view ->{
